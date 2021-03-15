@@ -7,6 +7,9 @@ import {
 import * as path from 'path';
 import * as fs from 'fs';
 import { execSync } from 'child_process';
+import { glob } from 'glob';
+import { promisify } from 'util';
+
 /**
  * Method to get workspace configuration option
  * @param option name of the option (e.g. for fstar.path should be path)
@@ -30,7 +33,7 @@ function includeArgsForCompilerHacking(rootPath: string): string[] {
   return [].concat.apply(['--MLish'], args);
 }
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   let includeArgs: string[] = [];
   let docSel: { scheme: string; language: string; }[] = [];
   try {
@@ -39,10 +42,30 @@ export function activate(context: vscode.ExtensionContext) {
                             {cwd: rootPath}).toString();
     // Identify FStar.git using the SHA1 of the very first commit
     if (output.startsWith('05758a0e58a1e')) {
-      includeArgs = includeArgsForCompilerHacking(rootPath);
+      includeArgs = includeArgs.concat(includeArgsForCompilerHacking(rootPath));
       docSel = [{ scheme: 'file', language: 'fsharp' }];
     }
   } catch(_) {}
+
+  const includeDirGlobPattern = getConfig<string>('includeDir', "");
+  const rootPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
+  if(includeDirGlobPattern.length >= 1 && includeDirGlobPattern[includeDirGlobPattern.length - 1] !== "/"){
+    vscode.window.showErrorMessage('`includeDir` option value is invalid. Glob pattern must end by `/` for search only directories.');
+  }else{
+    const dirList = await promisify(glob)(includeDirGlobPattern, {cwd: rootPath}).catch(err => {
+      console.error(err);
+      vscode.window.showErrorMessage(`Failed to find directories matching \`includeDir\` option. Error: ${err.message}`);
+    });
+
+    if(dirList instanceof Object){
+      const includeDirListArgs = dirList.reduce<string[]>((args, dir) => {
+        args.push("--include");
+        args.push(dir);
+        return args;
+      }, []);
+      includeArgs = includeArgs.concat(includeDirListArgs);
+    }
+  }
 
   const serverOptions: ServerOptions = {
     command: getConfig<string>('path'),
