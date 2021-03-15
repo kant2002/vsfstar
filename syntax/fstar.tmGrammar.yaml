@@ -15,7 +15,7 @@ repository:
     patterns:
       - include: '#comments'
       - name: variable.other.generic-type.fstar
-        match: '''[a-zA-Z0-9_]+\b'
+        match: '''[a-zA-Z0-9_]+(?!'')\b'
       - include: '#strings'
       - match: \b(int|nat|pos|bool|unit|string|Type|Type0|eqtype)\b
         name: support.class.base.fstar
@@ -219,7 +219,7 @@ repository:
         name: string.quoted.single.fstar
         patterns:
           - include: '#string_escapes'
-          - match: '.{2,}'
+          - match: '[^'']{2,}'
             name: invalid.illegal.string.js
       - begin: '`'
         beginCaptures:
