@@ -3,7 +3,7 @@ import {
   LanguageClientOptions,
   ServerOptions,
   LanguageClient
-} from 'vscode-languageclient';
+} from 'vscode-languageclient/node';
 import * as path from 'path';
 import * as fs from 'fs';
 import { execSync } from 'child_process';
@@ -94,5 +94,5 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 
   context.subscriptions.push(vscode.commands.registerCommand(
-    'vsfstar.restartLanguageClient', restartLanguageClient);
+    'vsfstar.restartLanguageClient', restartLanguageClient));
 }
