@@ -85,4 +85,14 @@ export async function activate(context: vscode.ExtensionContext) {
   // "command is not registered" error.
   context.subscriptions.push(vscode.commands.registerCommand(
     'vsfstar.activate', async () => { }));
+
+  async function restartLanguageClient() {
+    await fstarClient.stop();
+    console.log('F* Language Server is now stopped!');
+    await fstarClient.start();
+    console.log('F* Language Server is now started!');
+  }
+
+  context.subscriptions.push(vscode.commands.registerCommand(
+    'vsfstar.restartLanguageClient', restartLanguageClient);
 }

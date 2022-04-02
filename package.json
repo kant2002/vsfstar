@@ -9,7 +9,7 @@
   "publisher": "artagnon",
   "repository": {
     "type": "git",
-    "url": "https://github.com/artagnon/vsfstar"
+    "url": "https://github.com/kant2002/vsfstar"
   },
   "license": "MIT",
   "version": "0.0.8",
@@ -72,6 +72,10 @@
       {
         "command": "vsfstar.activate",
         "title": "Manually activate F* extension"
+      },
+      {
+        "command": "vsfstar.restartLanguageClient",
+        "title": "F*: Restart language server"
       }
     ]
   },
@@ -92,6 +96,6 @@
     "@types/node": "^13.9.2",
     "tslint": "^6.1.0",
     "typescript": "^3.8.3",
-    "vscode": "^1.1.36"
+    "vscode": "^1.1.37"
   }
 }
