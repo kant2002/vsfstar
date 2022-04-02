@@ -2,17 +2,17 @@
   "name": "vsfstar",
   "description": "F* LSP client",
   "author": {
-    "name": "Ramkumar Ramachandra",
-    "email": "artagnon@gmail.com",
-    "url": "https://artagnon.com"
+    "name": "Andrii Kurdiumov",
+    "email": "kant2002@gmail.com",
+    "url": "https://codevision.medium.com"
   },
-  "publisher": "artagnon",
+  "publisher": "kant2002",
   "repository": {
     "type": "git",
     "url": "https://github.com/kant2002/vsfstar"
   },
   "license": "MIT",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "engines": {
     "vscode": "^1.41.0"
   },
