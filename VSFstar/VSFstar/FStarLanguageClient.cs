@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace VSFstar
 {
-    [ContentType("fst")]
+    [ContentType(FStarContentDefinition.FStarContentType)]
     [Export(typeof(ILanguageClient))]
+    [RunOnContext(RunningContext.RunOnHost)]
     public class FStarLanguageClient : ILanguageClient
     {
-        public string Name => "Bar Language Extension";
+        public string Name => "FStar Language Extension";
 
         public IEnumerable<string> ConfigurationSections => null;
 

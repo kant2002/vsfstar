@@ -51,7 +51,7 @@
     <Compile Include="VSFstarPackage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Grammars\fstar.tmGrammar.json" />
+    <None Include="Grammars\fstar.tmGrammar" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

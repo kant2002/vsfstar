@@ -6,19 +6,21 @@ namespace VSFstar
 {
     public class FStarContentDefinition
     {
+        public const string FStarContentType = "fstar";
+
         [Export]
-        [Name("fst")]
+        [Name(FStarContentType)]
         [BaseDefinition(CodeRemoteContentDefinition.CodeRemoteContentTypeName)]
         internal static ContentTypeDefinition FstContentTypeDefinition;
 
         [Export]
         [FileExtension(".fst")]
-        [ContentType("fst")]
+        [ContentType(FStarContentType)]
         internal static FileExtensionToContentTypeDefinition FstFileExtensionDefinition;
 
         [Export]
         [FileExtension(".fsti")]
-        [ContentType("fst")]
+        [ContentType(FStarContentType)]
         internal static FileExtensionToContentTypeDefinition FstiFileExtensionDefinition;
 
     }
