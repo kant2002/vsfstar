@@ -1,4 +1,4 @@
-# vsfstar
+# F* extension for VS Code
 
 [![](https://vsmarketplacebadge.apphb.com/version/artagnon.vsfstar.svg)](https://marketplace.visualstudio.com/items?itemName=artagnon.vsfstar)
 
@@ -17,3 +17,13 @@ A [Visual Studio Code](https://code.visualstudio.com) extension for F\*, with su
 Requires [Z3 4.8.5](https://github.com/Z3Prover/z3/releases/tag/Z3-4.8.5) to be installed, and minimum [F\*](https://github.com/FStarLang/FStar) version of 0.9.7. Configure `vsfstar.path` to point to the `fstar.exe` binary you built.
 
 ![Demo](https://media.giphy.com/media/LmemFFMyaAu3WHOWph/giphy.gif)
+
+## Development
+
+After clone repository
+```
+npm ci
+npm run compile
+```
+
+Then press F5 within VS Code.
